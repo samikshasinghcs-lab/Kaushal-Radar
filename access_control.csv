@@ -1,0 +1,5 @@
+role,ingest,read_indicators,read_evidence,read_routing,read_audit,decide,manage_users,scope
+administrator,Y,Y,Y,Y,Y,Y,Y,all districts
+department_officer,Y,Y,Y,Y,N,Y,N,all districts
+district_officer,N,Y,Y,Y,N,N,N,own district only
+auditor,N,Y,Y,Y,Y,N,N,all districts
