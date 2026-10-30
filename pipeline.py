@@ -11,7 +11,19 @@ def validate(df, now_period="2026-10", max_age_months=6, required=SCHEMA):
     rep = {"errors": [], "warnings": [], "stale": False}
     if set(df.columns) != set(required): rep["errors"].append(f"SCHEMA_DRIFT cols={sorted(df.columns)}"); return rep
     for c, t in required.items():
-        if str(df[c].dtype) != t: rep["errors"].append(f"SCHEMA_DRIFT dtype {c}={df[c].dtype}, expected {t}")
+        actual = str(df[c].dtype)
+
+        # pandas 3.x may infer text columns as str instead of object.
+        # Accept genuine strings while keeping numeric schema checks strict.
+        if t == "object" and c in ("period", "source"):
+            if not df[c].map(lambda value: isinstance(value, str)).all():
+                rep["errors"].append(
+                    f"SCHEMA_DRIFT column {c} must contain strings"
+                )
+        elif actual != t:
+            rep["errors"].append(
+                f"SCHEMA_DRIFT dtype {c}={actual}, expected {t}"
+            )
     if rep["errors"]: return rep
     if df.isna().any().any(): rep["errors"].append(f"MISSING_VALUES n={int(df.isna().any(axis=1).sum())}")
     if (df.records < 0).any(): rep["errors"].append("NEGATIVE_COUNTS")

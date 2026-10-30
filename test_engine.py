@@ -30,4 +30,5 @@ class T(unittest.TestCase):
         with self.assertRaises(PermissionError): L.human_decision(bad, "o", "department_officer", "REJECT", "")
         with self.assertRaises(PermissionError): L.human_decision(ok, "o", "auditor", "REJECT", "")
         L.human_decision(ok, "o", "department_officer", "DEFER", "check"); self.assertTrue(L.verify())
-unittest.main()
+if __name__ == "__main__":
+    unittest.main()

@@ -20,4 +20,5 @@ class T(unittest.TestCase):
         self.assertNotIn(b"Raichur",open(p,"rb").read()); self.assertEqual(S.decrypt_at_rest(p,k),b"district,count\nRaichur,9000")
         with self.assertRaises(Exception): S.decrypt_at_rest(p,Fernet.generate_key())
     def test_tls(self): self.assertTrue(S.tls_roundtrip())
-unittest.main()
+if __name__ == "__main__":
+    unittest.main()
