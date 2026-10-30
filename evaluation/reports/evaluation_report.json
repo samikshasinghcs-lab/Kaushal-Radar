@@ -1,0 +1,910 @@
+{
+  "dataset": "evaluation/dataset.jsonl",
+  "synthetic_cases": 100,
+  "abstention_test_accuracy": 0.8,
+  "correct": 80,
+  "total": 100,
+  "results": [
+    {
+      "id": "SYN-001",
+      "category": "factual",
+      "abstention": {
+        "expected": false,
+        "actual": false,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-002",
+      "category": "numeric",
+      "abstention": {
+        "expected": false,
+        "actual": false,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-003",
+      "category": "hallucination",
+      "abstention": {
+        "expected": false,
+        "actual": false,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-004",
+      "category": "source",
+      "abstention": {
+        "expected": false,
+        "actual": false,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-005",
+      "category": "contradiction",
+      "abstention": {
+        "expected": false,
+        "actual": false,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-006",
+      "category": "missing",
+      "abstention": {
+        "expected": true,
+        "actual": true,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-007",
+      "category": "stale",
+      "abstention": {
+        "expected": true,
+        "actual": false,
+        "correct": false
+      }
+    },
+    {
+      "id": "SYN-008",
+      "category": "abstention",
+      "abstention": {
+        "expected": true,
+        "actual": false,
+        "correct": false
+      }
+    },
+    {
+      "id": "SYN-009",
+      "category": "robustness",
+      "abstention": {
+        "expected": false,
+        "actual": false,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-010",
+      "category": "clean",
+      "abstention": {
+        "expected": false,
+        "actual": false,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-011",
+      "category": "factual",
+      "abstention": {
+        "expected": false,
+        "actual": false,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-012",
+      "category": "numeric",
+      "abstention": {
+        "expected": false,
+        "actual": false,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-013",
+      "category": "hallucination",
+      "abstention": {
+        "expected": false,
+        "actual": false,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-014",
+      "category": "source",
+      "abstention": {
+        "expected": false,
+        "actual": false,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-015",
+      "category": "contradiction",
+      "abstention": {
+        "expected": false,
+        "actual": false,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-016",
+      "category": "missing",
+      "abstention": {
+        "expected": true,
+        "actual": true,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-017",
+      "category": "stale",
+      "abstention": {
+        "expected": true,
+        "actual": false,
+        "correct": false
+      }
+    },
+    {
+      "id": "SYN-018",
+      "category": "abstention",
+      "abstention": {
+        "expected": true,
+        "actual": false,
+        "correct": false
+      }
+    },
+    {
+      "id": "SYN-019",
+      "category": "robustness",
+      "abstention": {
+        "expected": false,
+        "actual": false,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-020",
+      "category": "clean",
+      "abstention": {
+        "expected": false,
+        "actual": false,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-021",
+      "category": "factual",
+      "abstention": {
+        "expected": false,
+        "actual": false,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-022",
+      "category": "numeric",
+      "abstention": {
+        "expected": false,
+        "actual": false,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-023",
+      "category": "hallucination",
+      "abstention": {
+        "expected": false,
+        "actual": false,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-024",
+      "category": "source",
+      "abstention": {
+        "expected": false,
+        "actual": false,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-025",
+      "category": "contradiction",
+      "abstention": {
+        "expected": false,
+        "actual": false,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-026",
+      "category": "missing",
+      "abstention": {
+        "expected": true,
+        "actual": true,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-027",
+      "category": "stale",
+      "abstention": {
+        "expected": true,
+        "actual": false,
+        "correct": false
+      }
+    },
+    {
+      "id": "SYN-028",
+      "category": "abstention",
+      "abstention": {
+        "expected": true,
+        "actual": false,
+        "correct": false
+      }
+    },
+    {
+      "id": "SYN-029",
+      "category": "robustness",
+      "abstention": {
+        "expected": false,
+        "actual": false,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-030",
+      "category": "clean",
+      "abstention": {
+        "expected": false,
+        "actual": false,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-031",
+      "category": "factual",
+      "abstention": {
+        "expected": false,
+        "actual": false,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-032",
+      "category": "numeric",
+      "abstention": {
+        "expected": false,
+        "actual": false,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-033",
+      "category": "hallucination",
+      "abstention": {
+        "expected": false,
+        "actual": false,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-034",
+      "category": "source",
+      "abstention": {
+        "expected": false,
+        "actual": false,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-035",
+      "category": "contradiction",
+      "abstention": {
+        "expected": false,
+        "actual": false,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-036",
+      "category": "missing",
+      "abstention": {
+        "expected": true,
+        "actual": true,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-037",
+      "category": "stale",
+      "abstention": {
+        "expected": true,
+        "actual": false,
+        "correct": false
+      }
+    },
+    {
+      "id": "SYN-038",
+      "category": "abstention",
+      "abstention": {
+        "expected": true,
+        "actual": false,
+        "correct": false
+      }
+    },
+    {
+      "id": "SYN-039",
+      "category": "robustness",
+      "abstention": {
+        "expected": false,
+        "actual": false,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-040",
+      "category": "clean",
+      "abstention": {
+        "expected": false,
+        "actual": false,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-041",
+      "category": "factual",
+      "abstention": {
+        "expected": false,
+        "actual": false,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-042",
+      "category": "numeric",
+      "abstention": {
+        "expected": false,
+        "actual": false,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-043",
+      "category": "hallucination",
+      "abstention": {
+        "expected": false,
+        "actual": false,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-044",
+      "category": "source",
+      "abstention": {
+        "expected": false,
+        "actual": false,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-045",
+      "category": "contradiction",
+      "abstention": {
+        "expected": false,
+        "actual": false,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-046",
+      "category": "missing",
+      "abstention": {
+        "expected": true,
+        "actual": true,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-047",
+      "category": "stale",
+      "abstention": {
+        "expected": true,
+        "actual": false,
+        "correct": false
+      }
+    },
+    {
+      "id": "SYN-048",
+      "category": "abstention",
+      "abstention": {
+        "expected": true,
+        "actual": false,
+        "correct": false
+      }
+    },
+    {
+      "id": "SYN-049",
+      "category": "robustness",
+      "abstention": {
+        "expected": false,
+        "actual": false,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-050",
+      "category": "clean",
+      "abstention": {
+        "expected": false,
+        "actual": false,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-051",
+      "category": "factual",
+      "abstention": {
+        "expected": false,
+        "actual": false,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-052",
+      "category": "numeric",
+      "abstention": {
+        "expected": false,
+        "actual": false,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-053",
+      "category": "hallucination",
+      "abstention": {
+        "expected": false,
+        "actual": false,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-054",
+      "category": "source",
+      "abstention": {
+        "expected": false,
+        "actual": false,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-055",
+      "category": "contradiction",
+      "abstention": {
+        "expected": false,
+        "actual": false,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-056",
+      "category": "missing",
+      "abstention": {
+        "expected": true,
+        "actual": true,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-057",
+      "category": "stale",
+      "abstention": {
+        "expected": true,
+        "actual": false,
+        "correct": false
+      }
+    },
+    {
+      "id": "SYN-058",
+      "category": "abstention",
+      "abstention": {
+        "expected": true,
+        "actual": false,
+        "correct": false
+      }
+    },
+    {
+      "id": "SYN-059",
+      "category": "robustness",
+      "abstention": {
+        "expected": false,
+        "actual": false,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-060",
+      "category": "clean",
+      "abstention": {
+        "expected": false,
+        "actual": false,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-061",
+      "category": "factual",
+      "abstention": {
+        "expected": false,
+        "actual": false,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-062",
+      "category": "numeric",
+      "abstention": {
+        "expected": false,
+        "actual": false,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-063",
+      "category": "hallucination",
+      "abstention": {
+        "expected": false,
+        "actual": false,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-064",
+      "category": "source",
+      "abstention": {
+        "expected": false,
+        "actual": false,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-065",
+      "category": "contradiction",
+      "abstention": {
+        "expected": false,
+        "actual": false,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-066",
+      "category": "missing",
+      "abstention": {
+        "expected": true,
+        "actual": true,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-067",
+      "category": "stale",
+      "abstention": {
+        "expected": true,
+        "actual": false,
+        "correct": false
+      }
+    },
+    {
+      "id": "SYN-068",
+      "category": "abstention",
+      "abstention": {
+        "expected": true,
+        "actual": false,
+        "correct": false
+      }
+    },
+    {
+      "id": "SYN-069",
+      "category": "robustness",
+      "abstention": {
+        "expected": false,
+        "actual": false,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-070",
+      "category": "clean",
+      "abstention": {
+        "expected": false,
+        "actual": false,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-071",
+      "category": "factual",
+      "abstention": {
+        "expected": false,
+        "actual": false,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-072",
+      "category": "numeric",
+      "abstention": {
+        "expected": false,
+        "actual": false,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-073",
+      "category": "hallucination",
+      "abstention": {
+        "expected": false,
+        "actual": false,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-074",
+      "category": "source",
+      "abstention": {
+        "expected": false,
+        "actual": false,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-075",
+      "category": "contradiction",
+      "abstention": {
+        "expected": false,
+        "actual": false,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-076",
+      "category": "missing",
+      "abstention": {
+        "expected": true,
+        "actual": true,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-077",
+      "category": "stale",
+      "abstention": {
+        "expected": true,
+        "actual": false,
+        "correct": false
+      }
+    },
+    {
+      "id": "SYN-078",
+      "category": "abstention",
+      "abstention": {
+        "expected": true,
+        "actual": false,
+        "correct": false
+      }
+    },
+    {
+      "id": "SYN-079",
+      "category": "robustness",
+      "abstention": {
+        "expected": false,
+        "actual": false,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-080",
+      "category": "clean",
+      "abstention": {
+        "expected": false,
+        "actual": false,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-081",
+      "category": "factual",
+      "abstention": {
+        "expected": false,
+        "actual": false,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-082",
+      "category": "numeric",
+      "abstention": {
+        "expected": false,
+        "actual": false,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-083",
+      "category": "hallucination",
+      "abstention": {
+        "expected": false,
+        "actual": false,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-084",
+      "category": "source",
+      "abstention": {
+        "expected": false,
+        "actual": false,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-085",
+      "category": "contradiction",
+      "abstention": {
+        "expected": false,
+        "actual": false,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-086",
+      "category": "missing",
+      "abstention": {
+        "expected": true,
+        "actual": true,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-087",
+      "category": "stale",
+      "abstention": {
+        "expected": true,
+        "actual": false,
+        "correct": false
+      }
+    },
+    {
+      "id": "SYN-088",
+      "category": "abstention",
+      "abstention": {
+        "expected": true,
+        "actual": false,
+        "correct": false
+      }
+    },
+    {
+      "id": "SYN-089",
+      "category": "robustness",
+      "abstention": {
+        "expected": false,
+        "actual": false,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-090",
+      "category": "clean",
+      "abstention": {
+        "expected": false,
+        "actual": false,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-091",
+      "category": "factual",
+      "abstention": {
+        "expected": false,
+        "actual": false,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-092",
+      "category": "numeric",
+      "abstention": {
+        "expected": false,
+        "actual": false,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-093",
+      "category": "hallucination",
+      "abstention": {
+        "expected": false,
+        "actual": false,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-094",
+      "category": "source",
+      "abstention": {
+        "expected": false,
+        "actual": false,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-095",
+      "category": "contradiction",
+      "abstention": {
+        "expected": false,
+        "actual": false,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-096",
+      "category": "missing",
+      "abstention": {
+        "expected": true,
+        "actual": true,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-097",
+      "category": "stale",
+      "abstention": {
+        "expected": true,
+        "actual": false,
+        "correct": false
+      }
+    },
+    {
+      "id": "SYN-098",
+      "category": "abstention",
+      "abstention": {
+        "expected": true,
+        "actual": false,
+        "correct": false
+      }
+    },
+    {
+      "id": "SYN-099",
+      "category": "robustness",
+      "abstention": {
+        "expected": false,
+        "actual": false,
+        "correct": true
+      }
+    },
+    {
+      "id": "SYN-100",
+      "category": "clean",
+      "abstention": {
+        "expected": false,
+        "actual": false,
+        "correct": true
+      }
+    }
+  ],
+  "interpretation": "Synthetic harness result only; not an LLM accuracy score."
+}
