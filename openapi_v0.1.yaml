@@ -1,0 +1,131 @@
+openapi: 3.0.3
+info:
+  title: Kaushal Radar API (DRAFT v0.1, proposed, not deployed)
+  version: 0.1.0
+  description: >
+    Proposed interface between KSISU and the Unified Skill Development Portal (MIS and Jobs modules).
+    Aggregates only: no names, Aadhaar, phone, bank details or row-level records cross this API.
+    Districts are identified by LGD code. Every indicator response carries its denominator, confidence and rank band.
+servers:
+  - url: https://ksisu.example.karnataka.gov.in/api/v1
+    description: Placeholder host (sandbox with synthetic data first)
+security:
+  - bearerAuth: [read:indicators]
+paths:
+  /districts:
+    get:
+      summary: List districts with LGD codes and effective dates
+      responses:
+        '200': {description: OK, content: {application/json: {schema: {type: array, items: {$ref: '#/components/schemas/District'}}}}}
+  /districts/{lgdCode}/indicators:
+    get:
+      summary: Indicators for one district (I1 to I5 live in Phase 0)
+      parameters:
+        - {name: lgdCode, in: path, required: true, schema: {type: string}}
+        - {name: denominator, in: query, schema: {type: string, enum: [implied, census2011, eligible_cohort]}, description: eligible_cohort is planned}
+        - {name: year, in: query, schema: {type: string, example: 2024-25}}
+      responses:
+        '200': {description: OK, content: {application/json: {schema: {$ref: '#/components/schemas/Indicators'}}}}
+        '404': {description: Unknown LGD code}
+  /districts/{lgdCode}/brief:
+    get:
+      summary: District brief with claim-check result (numbers verified against the engine)
+      parameters:
+        - {name: lgdCode, in: path, required: true, schema: {type: string}}
+      responses:
+        '200': {description: OK, content: {application/json: {schema: {$ref: '#/components/schemas/Brief'}}}}
+  /flags:
+    get:
+      summary: Open data-confidence flags (rule, district, owner, status)
+      responses:
+        '200': {description: OK, content: {application/json: {schema: {type: array, items: {$ref: '#/components/schemas/Flag'}}}}}
+  /supply:
+    post:
+      summary: MIS pushes aggregate training supply and outcomes (Level 2 integration)
+      security: [{bearerAuth: [write:supply]}]
+      requestBody:
+        required: true
+        content: {application/json: {schema: {$ref: '#/components/schemas/SupplyBatch'}}}
+      responses:
+        '202': {description: Accepted into quarantine until the quality gate passes}
+        '422': {description: Schema or range check failed; batch rejected with reasons}
+  /ledger:
+    get:
+      summary: Decision ledger entries
+      responses:
+        '200': {description: OK, content: {application/json: {schema: {type: array, items: {$ref: '#/components/schemas/LedgerEntry'}}}}}
+    post:
+      summary: Log a decision. Corroboration Gate enforced server-side
+      security: [{bearerAuth: [write:ledger]}]
+      requestBody:
+        required: true
+        content: {application/json: {schema: {$ref: '#/components/schemas/LedgerEntry'}}}
+      responses:
+        '201': {description: Logged}
+        '409': {description: Gate blocked. A capacity change needs evidence_status = corroborated}
+components:
+  securitySchemes:
+    bearerAuth: {type: http, scheme: bearer, bearerFormat: JWT, description: State SSO; role-based scopes}
+  schemas:
+    District:
+      type: object
+      properties:
+        lgdCode: {type: string}
+        name: {type: string}
+        effectiveFrom: {type: string, format: date, description: Boundary versioning for reorganisations}
+        predecessorLgdCodes: {type: array, items: {type: string}}
+    Indicators:
+      type: object
+      properties:
+        lgdCode: {type: string}
+        denominator: {type: string}
+        dgpi_per_1000: {type: number}
+        rank: {type: integer}
+        rankBand: {type: string, enum: [look_first, watch, monitor, lower]}
+        stabilityTop8Pct: {type: number, description: Share of 3000 population-error draws in the top 8}
+        confidence: {type: string, enum: [ok, review]}
+        cohortNote: {type: string, example: Yuvanidhi 2022-23 pass-out cohort; not unemployment}
+        suppressed: {type: boolean, description: True if a cell under 10 persons was suppressed}
+    Brief:
+      type: object
+      properties:
+        text: {type: string}
+        draftedBy: {type: string, enum: [template, model]}
+        numbersChecked: {type: integer}
+        numbersRejected: {type: array, items: {type: string}}
+        humanSignOff: {type: boolean}
+    Flag:
+      type: object
+      properties:
+        lgdCode: {type: string}
+        rule: {type: string}
+        detail: {type: string}
+        owner: {type: string}
+        status: {type: string, enum: [open, in_review, cleared]}
+    SupplyBatch:
+      type: object
+      required: [source, period, rows]
+      properties:
+        source: {type: string, example: KSDC-MIS}
+        period: {type: string, example: 2026-Q4}
+        rows:
+          type: array
+          items:
+            type: object
+            properties:
+              lgdCode: {type: string}
+              ncoCode: {type: string, description: NCO-2015 3-digit}
+              nsqfLevel: {type: integer}
+              seats: {type: integer}
+              enrolled: {type: integer}
+              placed: {type: integer}
+    LedgerEntry:
+      type: object
+      required: [lgdCode, decisionType, decisionMaker, evidenceStatus]
+      properties:
+        lgdCode: {type: string}
+        decisionType: {type: string, enum: [open_diagnosis, change_capacity, sector_review, data_audit]}
+        decisionMaker: {type: string}
+        evidenceStatus: {type: string, enum: [corroborated, not_corroborated]}
+        outcome: {type: string, nullable: true}
+        createdAt: {type: string, format: date-time}
