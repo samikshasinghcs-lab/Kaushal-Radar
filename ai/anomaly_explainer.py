@@ -114,3 +114,44 @@ def analyse_anomalies(
             "A threshold-based detector may miss other anomalies."
         ]
     }
+
+
+def explain_anomaly(observation):
+    """Compatibility adapter for single-observation anomaly checks."""
+    if not isinstance(observation, dict):
+        raise TypeError("observation must be a dictionary")
+
+    required = ("indicator", "observed_value", "expected_value")
+    missing = [key for key in required if key not in observation]
+    if missing:
+        raise ValueError(f"Missing fields: {', '.join(missing)}")
+
+    observed = observation["observed_value"]
+    expected = observation["expected_value"]
+
+    if (
+        isinstance(observed, bool)
+        or isinstance(expected, bool)
+        or not isinstance(observed, (int, float))
+        or not isinstance(expected, (int, float))
+    ):
+        raise ValueError("Observed and expected values must be numeric")
+
+    status = (
+        "REQUIRES_REVIEW"
+        if observed != expected
+        else "NO_ANOMALY_DETECTED"
+    )
+
+    return {
+        "indicator": observation["indicator"],
+        "observed_value": observed,
+        "expected_value": expected,
+        "status": status,
+        "method": observation.get("method", "unspecified"),
+        "explanation": (
+            "Observed value differs from expected value; human review required."
+            if status == "REQUIRES_REVIEW"
+            else "Observed value matches expected value."
+        ),
+    }

@@ -41,3 +41,69 @@ def explain_uncertainty(analysis):
         ),
         "human_review_required": bool(reasons),
     }
+
+
+# Compatibility adapter for callers passing evidence records directly.
+_explain_uncertainty_original = explain_uncertainty
+
+def explain_uncertainty(analysis):
+    if isinstance(analysis, list):
+        records = analysis
+        analysis = {
+            "evidence_count": len(records),
+            "evidence": records,
+            "stale_evidence": [
+                item for item in records
+                if isinstance(item, dict) and item.get("stale") is True
+            ],
+            "missing_evidence": [],
+            "warnings": [],
+        }
+
+    if not isinstance(analysis, dict):
+        raise TypeError("analysis must be a dictionary or list of evidence records")
+
+    return _explain_uncertainty_original(analysis)
+
+
+# Ensure a consistent status field for downstream consumers.
+_explain_uncertainty_with_adapter = explain_uncertainty
+
+def explain_uncertainty(analysis):
+    result = _explain_uncertainty_with_adapter(analysis)
+
+    if not isinstance(result, dict):
+        raise TypeError("Uncertainty analysis must return a dictionary")
+
+    if "status" not in result:
+        has_uncertainty = bool(
+            result.get("stale_evidence")
+            or result.get("missing_evidence")
+            or result.get("warnings")
+            or result.get("uncertainties")
+        )
+        result["status"] = (
+            "UNCERTAINTY_PRESENT"
+            if has_uncertainty
+            else "NO_UNCERTAINTY_DETECTED"
+        )
+
+    return result
+
+
+# Final correction: stale evidence must always be surfaced as uncertainty.
+_previous_uncertainty_function = explain_uncertainty
+
+def explain_uncertainty(analysis):
+    result = _previous_uncertainty_function(analysis)
+
+    if isinstance(analysis, list):
+        stale_records = [
+            item for item in analysis
+            if isinstance(item, dict) and item.get("stale") is True
+        ]
+        if stale_records:
+            result["status"] = "UNCERTAINTY_PRESENT"
+            result["stale_evidence"] = stale_records
+
+    return result

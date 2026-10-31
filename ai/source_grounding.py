@@ -51,3 +51,31 @@ def verify_sources(claims, evidence):
         results.append({"grounded": grounded})
 
     return results
+
+
+# Compatibility implementation: source matching is not source authentication.
+def verify_sources(claims, evidence):
+    available = {
+        str(item.get("source", "")).strip()
+        for item in evidence
+        if item.get("source")
+    }
+
+    results = []
+    for claim in claims:
+        source = str(claim.get("source", "")).strip()
+        grounded = bool(source) and source in available
+
+        results.append({
+            **claim,
+            "grounded": grounded,
+            "evidence_match": grounded,
+            "verification_status": (
+                "MATCHED_SYNTHETIC_SOURCE"
+                if grounded and "synthetic" in source.lower()
+                else "MATCHED_SOURCE"
+                if grounded
+                else "UNVERIFIED"
+            ),
+        })
+    return results
