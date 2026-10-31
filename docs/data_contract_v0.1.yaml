@@ -1,0 +1,69 @@
+dataset: district_training_supply
+version: "0.1"
+status: proposed_template
+
+owner_department: "Skill Development Department / KSDC, to be agreed"
+named_owner: "To be assigned"
+
+purpose: "Graduate-pressure diagnosis and corroboration of district signals. No other use."
+
+data_level: aggregate_only
+
+delivery:
+  level: 1
+  method: file_drop
+  format:
+    - csv
+    - parquet
+  frequency: quarterly
+
+schema:
+  - name: lgd_code
+    type: string
+    required: true
+
+  - name: nco_2015_3digit
+    type: string
+    required: true
+
+  - name: nsqf_level
+    type: integer
+    range: [1, 10]
+
+  - name: seats
+    type: integer
+    min: 0
+
+  - name: enrolled
+    type: integer
+    min: 0
+
+  - name: placed
+    type: integer
+    min: 0
+
+quality_rules:
+  - "enrolled <= seats * 1.2"
+  - "placed <= enrolled"
+  - "lgd_code exists in district table for the period"
+  - "District totals equal state total within 0.5%"
+
+privacy:
+  small_cell_suppression:
+    threshold: 10
+    complementary: true
+  retention: "To be agreed"
+  hosting: "India: State Data Centre or MeitY-empanelled cloud"
+
+access:
+  internal: role_based
+  public: aggregates_only
+
+on_failure:
+  late_feed: "Alert owner and retain last good version"
+  schema_drift: "Quarantine batch and notify owner"
+  bad_upload: "Reject with reasons"
+
+sign_off:
+  data_owner: "Pending"
+  ksisu_analyst: "Pending"

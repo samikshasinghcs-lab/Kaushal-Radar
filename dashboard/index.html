@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kaushal Radar | District Intelligence</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 24px;
+    background: #101827;
+    color: white;
+}
+
+main {
+    max-width: 950px;
+    margin: auto;
+}
+
+.card {
+    background: #1e293b;
+    padding: 20px;
+    margin: 16px 0;
+    border-radius: 12px;
+}
+
+input, textarea, button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    box-sizing: border-box;
+    border-radius: 7px;
+}
+
+button {
+    cursor: pointer;
+    font-weight: bold;
+}
+
+pre {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+.warning {
+    color: #fbbf24;
+}
+</style>
+</head>
+
+<body>
+<main>
+
+<h1>KAUSHAL RADAR</h1>
+<p>District Labour-Market Intelligence System</p>
+
+<div class="card">
+<h2>District Diagnostic</h2>
+
+<label>District</label>
+<input id="district" value="Raichur">
+
+<label>API Token</label>
+<input id="token" type="password">
+
+<label>Evidence JSON</label>
+<textarea id="evidence" rows="12">[
+  {
+    "indicator": "DGPI",
+    "value": 4.03,
+    "period": "2023-24",
+    "source": "SYNTHETIC_SOURCE_A"
+  }
+]</textarea>
+
+<button onclick="generateReport()">
+Generate District Report
+</button>
+</div>
+
+<div class="card">
+<h2>System Output</h2>
+<div id="status">Waiting for request.</div>
+<pre id="output"></pre>
+</div>
+
+<div class="card warning">
+<strong>Governance notice:</strong>
+This is a decision-support prototype.
+AI outputs are advisory. Government officers retain
+decision authority. Synthetic evidence must not be
+presented as official statistics.
+</div>
+
+</main>
+
+<script>
+async function generateReport() {
+
+    const status = document.getElementById("status");
+    const output = document.getElementById("output");
+
+    status.textContent = "Processing...";
+    output.textContent = "";
+
+    try {
+
+        const evidence = JSON.parse(
+            document.getElementById("evidence").value
+        );
+
+        const response = await fetch(
+            "/api/district/report",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization":
+                        "Bearer " +
+                        document.getElementById("token").value
+                },
+                body: JSON.stringify({
+                    district:
+                        document.getElementById("district").value,
+                    evidence: evidence,
+                    expected_indicators: [
+                        "DGPI",
+                        "TRAINING",
+                        "PLACEMENT"
+                    ]
+                })
+            }
+        );
+
+        const result = await response.json();
+
+        status.textContent = response.ok
+            ? "Report received"
+            : "Request failed";
+
+        output.textContent = JSON.stringify(
+            result,
+            null,
+            2
+        );
+
+    } catch (error) {
+
+        status.textContent = "Error";
+        output.textContent = error.message;
+    }
+}
+</script>
+
+</body>
+</html>
